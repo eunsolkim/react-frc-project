@@ -42,7 +42,7 @@ function App() {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Learn React
+                    Learn React Solsol2
                 </a>
 
                 <div>List</div>
