@@ -1,0 +1,22 @@
+FROM node:latest
+
+WORKDIR /app
+
+COPY package.json ./
+RUN chmod -R 777 /app
+
+RUN adduser worker
+RUN echo 'worker:solsol123!' | chpasswd
+RUN echo 'worker ALL=(ALL:ALL) ALL' >> /etc/sudoers
+
+RUN apt-get update && apt-get install ssh -y
+RUN service ssh restart && \
+        service ssh restart
+
+RUN npm install
+
+COPY ./ ./
+
+ENV NODE_OPTIONS --openssl-legacy-provider
+
+CMD ["npm", "run", "start"]
